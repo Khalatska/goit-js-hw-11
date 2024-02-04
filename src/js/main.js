@@ -38,13 +38,11 @@ function onFormSubmit(e){
               ],
             ],
         });
+    } else {
+        console.log(data);
     }
-    console.log(data);
-
-    formElem.reset();
     });
-
-    
+    formElem.reset();
 }
 
 
