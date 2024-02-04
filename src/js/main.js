@@ -41,8 +41,9 @@ function onFormSubmit(e){
     } else {
         console.log(data);
     }
-    });
+
     formElem.reset();
+    });  
 }
 
 
