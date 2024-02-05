@@ -18,6 +18,8 @@ body {
   background-size: 1em 1em;
   box-sizing: border-box;
   animation: barStripe 1s linear infinite;
+  display: block;
+  margin: 0 auto;
 }
 
 @keyframes barStripe {

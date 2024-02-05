@@ -26,7 +26,7 @@ function onFormSubmit(e){
     if(userValue === '') return;
     galleryElem.textContent = '';
     loaderContainer.style.display = 'block';
-    findImg(userValue).then( function ({hits}) { 
+    findImg(userValue).then(({hits})=> { 
     if( hits.length === 0) {
         iziToast.show({
             message:`"Sorry, there are no images matching your search query. Please try again!"`,
@@ -49,14 +49,16 @@ function onFormSubmit(e){
     } else {  
         const markup = hits.map(imgTemplate).join('');
         galleryElem.innerHTML = markup;
+
         const lightBox = new SimpleLightbox('.gallery-list a');
         lightBox.refresh();
     }
-
-    formElem.reset();
+    })
+    .catch(error => console.log(`ERROR:`, error))
+    .finally(res => { 
+      formElem.reset();
     loaderContainer.style.display = 'none';
-
-    });  
+  });
 }
  
 
@@ -72,7 +74,7 @@ function imgTemplate({
     downloads}) {
  return `
  <a href="${largeImageURL}" class="gallery">
- <figure class="gallery-figure> 
+ <figure class="gallery-figure"> 
   <img src="${webformatURL}" alt="${tags}" class="gallery-img"/>
   <figcaption class="gallery-figcaption">
   <div class="img-item">Likes <span class="img-elem">${likes}</span></div>
@@ -97,5 +99,10 @@ function findImg (userValue){
         safeSearch: true, 
     });
     const url = `${BASE_URL}?${PARAMS}`; 
-    return fetch (url).then(res => res.json());
+    return fetch (url)
+    .then(res => res.json())
+    .catch(error => {
+      const myError = new Error(error.status);
+      throw myError;
+    });
 }
