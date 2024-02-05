@@ -12,10 +12,11 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const searchElem = document.querySelector('.search-img');
 const btnElem = document.querySelector('.button-search');
 const formElem = document.querySelector('.form');
-const galleryElem = document.querySelector('.gallery');
+const galleryElem = document.querySelector('.gallery-list');
 const loaderContainer = document.querySelector('.loader');
 
 
+loaderContainer.style.display = 'none';
 
 formElem.addEventListener('submit', onFormSubmit);
 
@@ -48,10 +49,8 @@ function onFormSubmit(e){
     } else {  
         const markup = hits.map(imgTemplate).join('');
         galleryElem.innerHTML = markup;
-
-
-      const lightBox = new SimpleLightbox('.gallery a');
-      lightBox.refresh();
+        const lightBox = new SimpleLightbox('.gallery-list a');
+        lightBox.refresh();
     }
 
     formElem.reset();
@@ -73,7 +72,7 @@ function imgTemplate({
     downloads}) {
  return `
  <a href="${largeImageURL}" class="gallery">
- <figure> 
+ <figure class="gallery-figure> 
   <img src="${webformatURL}" alt="${tags}" class="gallery-img"/>
   <figcaption class="gallery-figcaption">
   <div class="img-item">Likes <span class="img-elem">${likes}</span></div>

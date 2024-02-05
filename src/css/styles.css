@@ -3,18 +3,41 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
+  padding: 36px;
 }
-.loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid #FFF;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-  }
 
+.loader {
+  width: 96px;
+  height: 16px;
+  display: inline-block;
+  background-color: #FFF;
+  border: 1px solid #FFF;
+  border-radius: 4px;
+  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.25) 75%, transparent 75%, transparent);
+  font-size: 30px;
+  background-size: 1em 1em;
+  box-sizing: border-box;
+  animation: barStripe 1s linear infinite;
+}
+
+@keyframes barStripe {
+  0% {
+    background-position: 1em 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+
+.form{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  
 
 .search-img{
   width: 272px;
@@ -42,7 +65,7 @@ padding: 8px 16px;
 padding: 8px 16px;
 width: 75px;
 height: 40px;
-background: #4e75ff;
+background-color: #4e75ff;
 font-family: inherit;
 font-weight: 500;
 font-size: 16px;
@@ -53,7 +76,63 @@ border: none;
 display: inline-flex;
 align-items: center;
 justify-content: center;
+transition: transform 250ms ease-in-out;
+}
+
+.button-search:hover,
+.button-search:focus{
+  background-color: #6c8cff;
+  transform: scale(1.1);
+}
 
 
+.gallery-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;   
+}
 
+.gallery{
+  border: 1px solid #808080;
+}
+
+.gallery-figure{
+  margin: 0;
+}
+
+
+.gallery-img{
+  height: 200px;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  
+}
+
+.gallery-figcaption{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 4px;
+
+}
+
+.img-item{
+  text-align: center;
+font-weight: 600;
+font-size: 12px;
+line-height: 1.33333;
+letter-spacing: 0.04em;
+color: #2e2f42;
+}
+
+
+.img-elem{
+  text-align: center;
+font-weight: 400;
+font-size: 12px;
+line-height: 2;
+letter-spacing: 0.04em;
+color: #2e2f42;
 }
